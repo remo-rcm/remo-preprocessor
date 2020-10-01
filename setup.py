@@ -34,7 +34,7 @@ setup(
     description="The REMO preprocessor package contains all maintenance of data access and processing of lateral boundary forcing data.",
     entry_points={
         'console_scripts': [
-            'remopreproc=remopreproc.cli:main',
+            'intorg=remopreproc.cli:main',
         ],
     },
     install_requires=requirements,
