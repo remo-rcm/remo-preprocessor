@@ -1,0 +1,41 @@
+---
+# example: /pool/data/CMIP6/data/CMIP/MPI-M/MPI-ESM1-2-LR/historical/r10i1p1f1/6hrLev/ta/gn/v20190710/
+#          /pool/data/CMIP6/data/CMIP/MPI-M/MPI-ESM1-2-LR/historical/r10i1p1f1/fx/orog/gn/v20190710/orog_fx_MPI-ESM1-2-LR_historical_r10i1p1f1_gn.nc
+processing:
+  variables: [ta, ps, ua, va, hus, tos]
+  static: [orog, sftlf, sftof]
+attributes:
+    activity_id: CMIP
+    institution_id: MPI-M
+    source_id: MPI-ESM1-2-HR
+    experiment_id: historical
+    member_id: r1i1p1f1
+    grid_label: gn
+    table_id: 6hrLev
+    #version: v20190710
+variables:
+# overwrite default attributes
+    ta:
+        variable_id: ta
+    ua:
+        variable_id: ua
+        #version: v20190815
+    va:
+        variable_id: va
+        #version: v20190815
+    hus:
+        variable_id: hus
+    ps:
+        variable_id: ps
+    orog:
+        variable_id: orog
+        table_id: fx
+    sftlf:
+        variable_id: sftlf
+        table_id: fx
+    tos:
+        variable_id: tos
+        table_id: Oday
+    sftof:
+        variable_id: sftof
+        table_id: fx

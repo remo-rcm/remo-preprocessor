@@ -1,0 +1,10 @@
+---
+dataset: ECMWF
+processing:
+  variables: [ta, ps, ua, va, hus, tos, sic]
+  static: [orog, sftlf, sftof]
+catalog:
+  url: "/work/ch0636/intake-esm/intake-esm-datastore/catalogs/mistral-era5.json"
+  sort_by: 'startdate'
+ocean:
+  to_atmo: False

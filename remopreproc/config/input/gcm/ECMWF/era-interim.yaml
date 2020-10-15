@@ -1,0 +1,110 @@
+---
+processing:
+    #variables: [ta, ps, ua, va, hus, tos, clw, sd, svo]
+  variables: [ta, ps, hus, tos, clw, sd, svo, sic]
+  #aux: [tsl1, tsl2, tsl3, tsl4, tsn, snw, src, skt]
+  static: [orog, sftlf, sftof]
+catalog:
+  url: "/work/ch0636/intake-esm/intake-esm-datastore/catalogs/mistral-era-interim.json"
+  sort_by: 'startdate'
+attributes:
+  # common attributes
+  class: "EI"
+  # special attributes
+variables:
+  ta:
+    code: 130
+    type: "an"
+    levtype: "ml"
+  ps:
+    code: 134
+    type: "an"
+    levtype: "sf"
+#  ua:
+#    code: 131
+#    type: "an"
+#    levtype: "ml"
+#  va:
+#    code: 132
+#    type: "an"
+#    levtype: "ml"
+  hus:
+    code: 133
+    type: "an"
+    levtype: "ml"
+  clw:
+    code: 246
+    type: "an"
+    levtype: "ml"
+  tos:
+    code: 34
+    type: "an"
+    levtype: "sf"
+  sic:
+    code: 31
+    type: "an"
+    levtype: "sf"
+  orog:
+    code: 129
+    type: "an"
+    levtype: "sf"
+  sftlf:
+    code: 172
+    type: "an"
+    levtype: "sf"
+  sftof:
+    code: 172
+    type: "an"
+    levtype: "sf"
+  tsl1:
+    code: 139
+    type: "an"
+    levtype: "sf"
+  tsl2:
+    code: 170
+    type: "an"
+    levtype: "sf"
+  tsl3:
+    code: 183
+    type: "an"
+    levtype: "sf"
+  tsl4:
+    code: 236
+    type: "an"
+    levtype: "sf"
+  tsn:
+    code: 238
+    type: "an"
+    levtype: "sf"
+  snw:
+    code: 141
+    type: "an"
+    levtype: "sf"
+  src:
+    code: 198
+    type: "an"
+    levtype: "sf"
+  sd:
+    code: 155
+    type: "an"
+    levtype: "ml"
+  svo:
+    code: 138
+    type: "an"
+    levtype: "ml"
+  skt:
+    code: 235
+    type: "an"
+    levtype: "sf"
+  swvl1:
+    code: 39
+    type: "an"
+    levtype: "sf"
+  swvl2:
+    code: 40
+    type: "an"
+    levtype: "sf"
+  swvl3:
+    code: 41
+    type: "an"
+    levtype: "sf"

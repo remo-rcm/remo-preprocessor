@@ -1,0 +1,268 @@
+---
+T:
+  dims: [time, lev, rlat, rlon]
+  attributes:
+    code: 130
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+U:
+  dims: [time, lev, rlat, rlon]
+  attributes:
+    code: 131
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+V:
+  dims: [time, lev, rlat, rlon]
+  attributes:
+    code: 132
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+QD:
+  dims: [time, lev, rlat, rlon]
+  attributes:
+    code: 133
+    standard_name: "specific_humidity"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+QW:
+  dims: [time, lev, rlat, rlon]
+  attributes:
+    code: 153
+    remo_description: "liquid water content"
+    standard_name: "mass_fraction_of_cloud_liquid_water_in_air"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+RF:
+  dims: [time, lev, rlat, rlon]
+  attributes:
+    comment: "relative_humidity"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+PS:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 134
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TSL:
+  dims: [time, rlat, rlon]
+  fill_value: 1.e20
+  attributes:
+    code: 54
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TSW:
+  dims: [time, rlat, rlon]
+  fill_value: 1.e20
+  attributes:
+    code: 55
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TSI:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 56
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+SEAICE:
+  dims: [time, rlat, rlon]
+  fill_value: 1.e20
+  attributes:
+    code: 210
+FIB:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 129
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+FIBGE:
+  dims: [time, rlat, rlon]
+  attributes:
+    comment: "global geopotential interpolated to regional grid"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+BLA:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 172
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+BLAGE:
+  dims: [time, rlat, rlon]
+  attributes:
+    comment: "global land sea mask interpolated to regional grid"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TD:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 170
+    remo_description: "deep soil temperature"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TDCL:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 183
+    remo_description: "deep soil temperature"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TD3:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 207
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TD4:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 208
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TD5:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 209
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+TSN:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 206
+    remo_description: "snow temperature"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+AZ0:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 173
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+VLT:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 200
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+BETA:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 272
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WMINLOK:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 273
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WMAXLOK:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 274
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WS:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 140
+    remo_description: "soil wetness"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+SN:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 141
+    remo_description: "snow depth"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WL:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 194
+    remo_description: "skin reservoir content"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+QDBL:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 84
+    remo_description: "specific humidity surface (land)"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+
+## static from bodlib
+AZ0:
+  dims: [rlat, rlon]
+  attributes:
+    code: 173
+    remo_description: "surface roughness length"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+ALB:
+  dims: [rlat, rlon]
+  attributes:
+    code: 174
+    remo_description: "surface background albedo"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+VGRAT:
+  dims: [rlat, rlon]
+  attributes:
+    code: 198
+    remo_description: "vegetation ratio"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+VAROR:
+  dims: [rlat, rlon]
+  attributes:
+    code: 199
+    remo_description: "orographic variance (for surface runoff)"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+VLT:
+  dims: [rlat, rlon]
+  attributes:
+    code: 200
+    remo_description: "leaf area index"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+FOREST:
+  dims: [rlat, rlon]
+  attributes:
+    code: 212
+    remo_description: "vegetation type"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+FAO:
+  dims: [rlat, rlon]
+  attributes:
+    code: 226
+    remo_description: "FAO data set (soil data flags)"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WSMX:
+  dims: [rlat, rlon]
+  attributes:
+    code: 229
+    remo_description: "field capacity of soil"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+BETA:
+  dims: [rlat, rlon]
+  attributes:
+    code: 272
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WMINLOK:
+  dims: [rlat, rlon]
+  attributes:
+    code: 273
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WMAXLOK:
+  dims: [rlat, rlon]
+  attributes:
+    code: 274
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"

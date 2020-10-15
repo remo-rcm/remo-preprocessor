@@ -1,0 +1,56 @@
+T:
+  code: 130
+  src: "ta"
+TS:
+  code: 139
+  src: "tos"
+PS:
+  code: 134
+  src: "ps"
+U:
+  code: 131
+  src: "ua"
+V:
+  code: 132
+  src: "va"
+QD:
+  code: 133
+  src: hus
+QW:
+  src: clw
+SEAICE:
+  src: sic
+  cressman: True
+  mask: "sea"
+TSL:
+  src: "skt"
+  cressman: True
+#  mask: None
+TD3:
+  src: "tsl1"
+  cressman: True
+#  mask: None
+TD4:
+  src: "tsl2"
+  cressman: True
+#  mask: None
+TD5:
+  src: "tsl3"
+  cressman: True
+#  mask: None
+TD:
+  src: "tsl4"
+  cressman: True
+#  mask: None
+TSN:
+  src: "tsn"
+  cressman: True
+#  mask: None
+SN:
+  src: "snw"
+  cressman: True
+#  mask: None
+WL:
+  src: "src"
+  cressman: True
+  mask: "land"

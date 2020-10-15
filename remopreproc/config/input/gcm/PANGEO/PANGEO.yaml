@@ -1,0 +1,11 @@
+---
+dataset: NC4Dataset
+processing:
+  variables: [ta, ps, ua, va, hus, tos]
+  static: [orog, sftlf, sftof]
+catalog:
+  url: "https://raw.githubusercontent.com/NCAR/intake-esm-datastore/master/catalogs/pangeo-cmip6.json"
+  #url: "https://gitlab.dkrz.de/mipdata/intake-esm/-/raw/master/mistral-cmip6.json"
+  #sort_by: 'time_range'
+attributes:
+  activity_id: CMIP

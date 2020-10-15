@@ -1,0 +1,51 @@
+---
+processing:
+  variables: [ta, ps, ua, va, hus, tos, sic]
+  static: [orog, sftlf, sftof]
+catalog:
+  url: "/work/ch0636/intake-esm/intake-esm-datastore/catalogs/mistral-era5.json"
+attributes:
+  # common attributes
+  class: "E5"
+  # special attributes
+variables:
+    #  ta:
+    #    code: 130
+    #    type: "an"
+    #    levtype: "ml"
+  ps:
+    code: 134
+    type: "an"
+    levtype: "sf"
+    #  ua:
+    #    code: 131
+    #    type: "an"
+    #    levtype: "ml"
+    #  va:
+    #    code: 132
+    #    type: "an"
+    #    levtype: "ml"
+    #  hus:
+    #    code: 133
+    #    type: "an"
+    #    levtype: "ml"
+    #  tos:
+    #    code: 34
+    #    type: "an"
+    #    levtype: "sf"
+    #  sic:
+    #    code: 31
+    #    type: "an"
+    #    levtype: "sf"
+  orog:
+    code: 129
+    type: "an"
+    levtype: "sf"
+  sftlf:
+    code: 172
+    type: "an"
+    levtype: "sf"
+  sftof:
+    code: 172
+    type: "an"
+    levtype: "sf"

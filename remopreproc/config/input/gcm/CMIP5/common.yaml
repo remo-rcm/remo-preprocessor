@@ -1,0 +1,10 @@
+---
+dataset: NC4Dataset
+processing:
+  variables: [ta, ps, ua, va, hus, tos]
+  static: [orog, sftlf, sftof]
+catalog:
+  url: "/work/ch0636/intake-esm/intake-esm-datastore/catalogs/mistral-cmip5.json"
+  sort_by: 'temporal_subset'
+attributes:
+  product_id: output1

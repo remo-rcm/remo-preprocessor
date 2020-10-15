@@ -1,0 +1,75 @@
+# static from bodlib
+AZ0:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 173
+    remo_description: "surface roughness length"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+ALB:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 174
+    remo_description: "surface background albedo"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+VGRAT:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 198
+    remo_description: "vegetation ratio"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+VAROR:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 199
+    remo_description: "orographic variance (for surface runoff)"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+VLT:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 200
+    remo_description: "leaf area index"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+FOREST:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 212
+    remo_description: "vegetation type"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+FAO:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 226
+    remo_description: "FAO data set (soil data flags)"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WSMX:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 229
+    remo_description: "field capacity of soil"
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+BETA:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 272
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WMINLOK:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 273
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
+WMAXLOK:
+  dims: [time, rlat, rlon]
+  attributes:
+    code: 274
+    grid_mapping: "rotated_latitude_longitude"
+    coordinates: "lon lat"
