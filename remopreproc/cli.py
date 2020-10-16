@@ -4,10 +4,12 @@ import sys
 import os
 
 import logging
-
 import fire
 
+from . import colored
 from . import remopreproc
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s | %(levelname)8s | %(module)10s | %(funcName)20s | %(message)s')
 
 
 logger = logging.getLogger(__name__)
@@ -34,7 +36,7 @@ def run():
 class Preprocessor():
 
     @staticmethod
-    def init(root=None):
+    def init(expid='000000', root=None):
         """Initialize working directory.
 
         Parameters
@@ -43,13 +45,18 @@ class Preprocessor():
             Root directory.
         """
         logger.info('running init')
-        remopreproc.init_workspace(root)
+        remopreproc.init(expid, root)
 
     def input():
         """search for input data
         """
 
 def main():
+    # Workaroud to avoid using more for the output
+    def display(lines, out):
+        text = "\n".join(lines) + "\n"
+        out.write(text)
+    fire.core.Display = display
     fire.Fire(Preprocessor(), name='intorg')
 
 if __name__ == "__main__":
