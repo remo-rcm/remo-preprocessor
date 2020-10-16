@@ -20,7 +20,5 @@ def browse(input_dir):
             print(os.path.join(dirname, filename))
 
 
-
-
 input_gcm_path = pkg_resources.resource_filename(__name__, "input/gcm")
 
