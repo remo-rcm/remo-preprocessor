@@ -9,6 +9,8 @@ import fire
 from . import colored
 from . import remopreproc
 
+
+# logger configuration
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s | %(levelname)8s | %(module)10s | %(funcName)20s | %(message)s')
 
 
@@ -47,6 +49,7 @@ class Preprocessor():
         logger.info('running init')
         remopreproc.init(expid, root)
 
+    @staticmethod
     def input():
         """search for input data
         """
