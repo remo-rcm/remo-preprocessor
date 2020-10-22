@@ -10,13 +10,20 @@ import yaml
 
 import cftime
 
-from constants import DATE_FMT as date_fmt
+from .constants import DATE_FMT as date_fmt
 
 def print_datinfo(name, data):
     logging.debug('{:10} - min: {}, max: {}'.format(name, data.min(), data.max()))
     logging.debug('{:10} - shape: {}'.format(name, data.shape))
     logging.debug('{:10} - type: {}'.format(name, type(data)))
 
+
+def get_abs_path(filepath):
+    """returns an absolute filepath
+    """
+    if not os.path.isabs(filepath):
+        return os.path.abspath(os.path.join(os.getcwd(), filepath))
+    return filepath
 
 def parse_date(datetime):
     return dt.datetime.strptime(datetime, date_fmt)

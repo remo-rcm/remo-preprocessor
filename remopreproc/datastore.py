@@ -1,15 +1,15 @@
 
 
-import filemanager as fm
-import dataset as ds
+from . import filemanager as fm
+from . import dataset as ds
 import logging
 
-from constants import GVars
+from .constants import GVars
 
-from cache_deco import cached
+from .cache_deco import cached
 from cdo import Cdo
 
-import ecmwf as era
+from . import ecmwf as era
 
 ##class DataStore():
 ##    """Static class to handle dataset selection

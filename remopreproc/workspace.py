@@ -31,10 +31,10 @@ def init_user_config(**kwargs):
     user_config.update(kwargs)
     return user_config
 
-def init_workspace(expid, root):
+def init_workspace(expid, domain, root):
     """initialize user workspace.
     """
-    user_config = init_user_config(expid=expid)
+    user_config = init_user_config(expid=expid, domain=domain)
     init_dir(user_config, root)
     logger.info('WORK: {}'.format(WORK))
     logger.info('SCRATCH: {}'.format(SCRATCH))

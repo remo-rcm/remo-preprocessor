@@ -4,7 +4,7 @@ import logging
 
 from cordex import ESGF
 #from cordex.dataset import NC4Dataset, NC4MFDataset, XRDataset
-from exp import ExpVars
+from .exp import ExpVars
 from netCDF4 import Dataset, MFDataset, date2index, num2date, date2num
 import xarray
 import intake
@@ -12,9 +12,9 @@ from datetime import datetime
 import pprint
 import numpy as np
 
-import common as cm
+from . import common as cm
 
-from cal import AbsoluteCalendar
+from .cal import AbsoluteCalendar
 
 from cdo import Cdo
 

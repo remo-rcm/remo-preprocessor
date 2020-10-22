@@ -3,6 +3,7 @@
 
 import pandas as pd
 
+from pyremo2 import domain as dm
 
 def get_info(domain):
     bb = domain.grid_rotated.get_bounding_box()
@@ -14,3 +15,6 @@ def get_info(domain):
 def get_vc_table(filename):
     return pd.from_csv(filename)
 
+
+def load_domain(short_name):
+    return dm.domain(short_name)

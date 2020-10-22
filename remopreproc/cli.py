@@ -38,21 +38,30 @@ def run():
 class Preprocessor():
 
     @staticmethod
-    def init(expid='000000', root=None):
+    def init(expid='000000', domain=None, root=None):
         """Initialize working directory.
 
         Parameters
         ----------
+        expid: str
+            experiment id.
         root: str
             Root directory.
         """
-        logger.info('running init')
-        remopreproc.init(expid, root)
+        logger.info('running init operator')
+        remopreproc.init(expid, domain, root)
 
     @staticmethod
-    def input():
+    def input(user_config):
         """search for input data
+
+        Parameters
+        ----------
+        user_config: str
+            user_config file
         """
+        logger.info('running input operator')
+        remopreproc.input(user_config)
 
 def main():
     # Workaroud to avoid using more for the output

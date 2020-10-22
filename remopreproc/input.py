@@ -1,14 +1,16 @@
 """input module deals with finding files and managing tables.
 """
-import common as cm
+from . import common as cm
 import logging
-import exp
+from . import exp
 import os
-from exp import ExpVars
-from constants import GVars
+from .exp import ExpVars
+from .constants import GVars
 
-import datastore as ds
-from catalog import Intake
+from . import constants as const
+
+from . import datastore as ds
+from .catalog import Intake
 
 import pandas as pd
 
@@ -72,6 +74,11 @@ def collect_input(args):
     exp.load_config(args.user_config)
     create_input_tables()
 
+def get_input(user_config):
+    config_file = cm.get_abs_path(user_config)
+    logging.info('user_config: {}'.format(config_file))
+    logging.debug('current directory: {}'.format(const.CUR_DIR))
+    exp.load_config(user_config)
 
 def input_parser(subparsers):
     """Define the subparser arguments and options"""

@@ -2,7 +2,7 @@
 
 
 from cdo import Cdo
-from cache_deco import cached
+from .cache_deco import cached
 import pandas as pd
 
 

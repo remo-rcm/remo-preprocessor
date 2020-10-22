@@ -5,12 +5,12 @@ import logging
 from netCDF4 import Dataset, MFDataset, date2index, num2date, date2num
 import xarray as xr
 import pandas as pd
-from cache_deco import cached, key_memoized
+from .cache_deco import cached, key_memoized
 import numpy as np
 
-from constants import GVars
+from .constants import GVars
 
-import filemanager as fm
+from . import filemanager as fm
 
 cdo_logging = True
 

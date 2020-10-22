@@ -16,13 +16,16 @@ def browse(input_dir):
     dirs = {}
     for dirname, dirnames, filenames in os.walk(input_dir):
         # print path to all subdirectories first.
-        for subdirname in dirnames:
-            print(os.path.join(dirname, subdirname))
+        print(dirname)
+        print(dirnames)
+        print(filenames)
+#        for subdirname in dirnames:
+            #print(os.path.join(dirname, subdirname))
         # print path to all filenames.
         for filename in filenames:
-            print(filename)
+            #print(filename)
             project = os.path.basename(dirname)
-            input = filename
+            #input = filename
             filepath = os.path.join(dirname, filename)
             dirs[project] =  {input: filepath}
     return dirs
@@ -31,5 +34,9 @@ def browse(input_dir):
 input_gcm_path = pkg_resources.resource_filename(__name__, os.path.join("input", "gcm"))
 
 bodlib = get_yaml(pkg_resources.resource_filename(__name__, os.path.join("input", "bodlib", "bodlib.yaml")))
+
+mapping = get_yaml(pkg_resources.resource_filename(__name__, os.path.join("mapping", "mapping.yaml")))
+
+gcm_input = browse(input_gcm_path) 
 
 
