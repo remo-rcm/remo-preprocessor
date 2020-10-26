@@ -8,8 +8,6 @@ import datetime as dt
 
 import yaml
 
-import cftime
-
 from .constants import DATE_FMT as date_fmt
 
 def print_datinfo(name, data):

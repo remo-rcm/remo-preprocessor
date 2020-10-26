@@ -16,9 +16,9 @@ def browse(input_dir):
     dirs = {}
     for dirname, dirnames, filenames in os.walk(input_dir):
         # print path to all subdirectories first.
-        print(dirname)
-        print(dirnames)
-        print(filenames)
+#        print(dirname)
+#        print(dirnames)
+#        print(filenames)
 #        for subdirname in dirnames:
             #print(os.path.join(dirname, subdirname))
         # print path to all filenames.

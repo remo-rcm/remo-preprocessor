@@ -13,4 +13,5 @@ user_config_default_yaml = pkg_resources.resource_filename(__name__, "user-confi
 user_config_default = get_yaml(user_config_default_yaml)
 
 LOG_DIR = 'log'
+INPUT_DIR = 'input'
 DFLT_EXPID = '000000'

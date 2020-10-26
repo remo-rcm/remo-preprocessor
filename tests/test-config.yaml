@@ -1,0 +1,12 @@
+---
+expid: "000000"
+processing:
+    timerange: "1979-01-01T00:00:00/to/1979-12-31T18:00:00"
+input:
+    dataset: PANGEO/MPI-ESM1-2-HR.yaml
+    bodlib: /work/ch0636/surflibs/cordex/lib_EUR-11_frac
+output:
+    path: /work/ch0636/g300046/ERA5/EUR-11/xa
+grid:
+    domain: EUR-11
+    vc_table: 27_standard

@@ -38,7 +38,7 @@ def write_input_tables(dataframes):
     """writes csv input tables from a catalog search
     """
     for varname, df in dataframes.items():
-        filename = os.path.join(GVars.usrDir, file_format.format(varname))
+        filename = os.path.join(ExpVars.configdir, file_format.format(varname))
         logging.info('writing table for {} to {}'.format(varname, filename))
         if df.empty:
             logging.warning('table for {} is empty!'.format(varname))
@@ -50,7 +50,7 @@ def read_input_tables(varnames):
     """
     dataframes = {}
     for varname in varnames:
-        filename = os.path.join(GVars.usrDir, file_format.format(varname))
+        filename = os.path.join(ExpVars.configdir, file_format.format(varname))
         logging.info('reading table for {} from {}'.format(varname, filename))
         df = pd.read_csv(filename)
         dataframes[varname] = df
@@ -61,17 +61,17 @@ def create_input_tables():
     """creates input tables from a catalog search.
     """
     url = ExpVars.config_input_data['catalog']['url']
-    sort_by = ExpVars.config_input_data['catalog']['sort_by']
+    sort_by = ExpVars.config_input_data['catalog'].get('sort_by', None)
 
     catalog = Intake(url, sort_col=sort_by)
     input_files = find_input_files(catalog, ExpVars.gcm_var_attrs)
     write_input_tables(input_files)
 
 
-def collect_input(args):
+def collect_input(user_config):
     """main driver for finding input files
     """
-    exp.load_config(args.user_config)
+    exp.load_config(user_config)
     create_input_tables()
 
 def get_input(user_config):
@@ -79,6 +79,7 @@ def get_input(user_config):
     logging.info('user_config: {}'.format(config_file))
     logging.debug('current directory: {}'.format(const.CUR_DIR))
     exp.load_config(user_config)
+    create_input_tables()
 
 def input_parser(subparsers):
     """Define the subparser arguments and options"""

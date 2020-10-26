@@ -42,7 +42,6 @@ class Intake(FileCollection):
         self.sort_col = sort_col
         self.url = url
         self.col = self.get_collection(self.url)
-        print(self.col.df)
 
     def get_collection(self, url):
         logging.info('reading catalog: {}'.format(url))
