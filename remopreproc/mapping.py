@@ -1,13 +1,13 @@
 
 import numpy as np
 
-from . import interface as intf
+from pyintorg import interface as intf
 from . import grid as gd
 from . import variable as var
 from . import filemanager as fm
 import logging
-
-from static_data import static_data
+from .static_data import bodlib 
+from .state import State
 
 from .common import print_datinfo
 
@@ -15,13 +15,11 @@ import datetime as dt
 
 from . import ocean as sst
 
-from exp import ExpVars
+from .exp import ExpVars
 
-import datastore as ds
+from .import datastore as ds
 
-from dataset import NC4Dataset
-
-
+from .dataset import NC4Dataset
 
 class Mapping():
     """Connects input variable with output data using mapping info.
@@ -118,6 +116,16 @@ def mapping_table_dynamic(datasets, table, domain):
     src_qd = var.create_variable(source, datasets )
     mapping_table[varname] = src_qd
 
+    varname = 'QW'
+    source = table[varname]['src']
+    src_qw = var.create_variable(source, datasets )
+    mapping_table[varname] = src_qw
+
+    varname = 'SEAICE'
+    source = table[varname]['src']
+    if source in datasets.storage:
+        src = var.create_variable(source, datasets )
+        mapping_table[varname] = src
 
     #varname = 'TS'
     #source = table[varname]['src']
@@ -149,6 +157,14 @@ def mapping_table_aux(datasets, aux_vars, table, domain):
     return mapping_table
 
 
+def create_mapping_table(datasets, variables, table, domain):
+    for remo_var in variables:
+        if remo_var in table:
+            cressman = table[remo_var].get('cressman', False)
+            mask = table[remo_var].get('mask', None)
+            source = table[remo_var]['src']
+            src = var.create_variable(source, datasets)
+
 
 def interpolate_horizontal(data, varmap, name):
     if len(data.shape)==3:
@@ -168,8 +184,8 @@ def remap_sst(varmap, datetime):
     print_datinfo('tsgm', tsgm)
     print_datinfo('tsgm.data', tsgm.filled(fill_value=1.e20))
     print_datinfo('tsgm.mask', tsgm.mask)
-    blaem = static_data.blaem
-    blagm = static_data.blagm #_sst
+    blaem = bodlib.blaem
+    blagm = bodlib.blagm #_sst
     print_datinfo('blagm', blagm)
     print_datinfo('blaem', blaem)
     print_datinfo('blaem.mask', blaem.mask)
@@ -181,7 +197,8 @@ def remap_sst(varmap, datetime):
             varmap.phiem, varmap.indii, varmap.indjj, 'TSW')
     #mask = np.where( blaem > 1.0 - 0.5/fakinf, True, False)
     mask = np.where( blaem == 1.0, True, False)
-    state['TSL'] = np.ma.masked_array(tslge, mask=mask, fill_value=1.e20)
+    #state['TSL'] = np.ma.masked_array(tslge, mask=mask, fill_value=1.e20)
+    state['TSL'] = np.array(tslge)
     state['TSW'] = np.ma.masked_array(tswge, mask=mask, fill_value=1.e20)
     print_datinfo('state[\'TSL\']', state['TSL'])
     print_datinfo('state[\'TSW\']', state['TSW'])
@@ -245,15 +262,27 @@ def remap_dynamic(mapping_table, datetime):
     print_datinfo('vge', vge)
 
     # additional variables
-    fibgm = static_data.fibgm
+    fibgm = bodlib.fibgm
     print_datinfo('fibgm', fibgm)
-    qdgm  = mapping_table['QD'].data_by_date(datetime)
+    qdgm  = mapping_table['QD'].data_by_date(datetime).clip(min=0.0)
+    qwgm  = mapping_table['QW'].data_by_date(datetime).clip(min=0.0)
+
+    qdgm_le_zero = np.where( qdgm <= 0.0, True, False)
+    qdgm = np.where( qdgm_le_zero, 0.0, qdgm)
+    qwgm = np.where( qdgm_le_zero, 0.0, qwgm)
+    qdgm_or_qwgm_gt_one = np.where( (qdgm > 1.0) | (qwgm > 1.0), True, False)
+    qdgm = np.where( qdgm_or_qwgm_gt_one, 0.0, qdgm)
+    qwgm = np.where( qdgm_or_qwgm_gt_one, 0.0, qwgm)
+    
+
     print_datinfo('qdgm', qdgm)
+    print_datinfo('qwgm', qwgm)
     print_datinfo('akgm', akgm)
     print_datinfo('bkgm', bkgm)
     ficgm = intf.geopotential(fibgm, tgm, qdgm, psgm, akgm, bkgm)
     ficge = interpolate_horizontal(ficgm, t_varmap, 'FIC')
-    arfgm = intf.relative_humidity(qdgm, tgm, psgm, akgm, bkgm)
+    arfgm = intf.relative_humidity(qdgm, tgm, psgm, akgm, bkgm, qwgm)
+    print_datinfo('arfgm', bkgm)
     arfge = interpolate_horizontal(arfgm, t_varmap, 'AREL HUM')
 
     # additional wind vector for rotation
@@ -268,8 +297,8 @@ def remap_dynamic(mapping_table, datetime):
     print_datinfo('vge_rot', vge_rot)
 
 
-    fibem = static_data.fibem
-    fibge = static_data.fibge
+    fibem = bodlib.fibem
+    fibge = bodlib.fibge
     print_datinfo('fibem', fibem)
     print_datinfo('fibge', fibge)
 
@@ -322,6 +351,7 @@ def remap_dynamic(mapping_table, datetime):
     print_datinfo('uem', uem)
     print_datinfo('vem', vem)
 
+
     # store results in the atmo state
     atmo = {}# State()
     atmo['T']    = tem
@@ -337,8 +367,6 @@ def remap_aux_fields(mapping_table, datetime, mask=False):
     """
     """
     aux = {}#State()
-    blaem = static_data.blaem
-    blagm = static_data.blagm #_sst
     for remo_var, varmap in mapping_table.items():
         logging.info('horizontal interpolation of {}'.format(remo_var))
         aux[remo_var] = remap_horiz_2d(remo_var, varmap, datetime)
@@ -348,8 +376,8 @@ def remap_aux_fields(mapping_table, datetime, mask=False):
 def remap_horiz_2d(remo_var, varmap, datetime):
     """Remap a surface field horizontally.
     """
-    blaem = static_data.blaem
-    blagm = static_data.blagm #_sst
+    blaem = bodlib.blaem
+    blagm = bodlib.blagm #_sst
     logging.info('horizontal interpolation of {}'.format(remo_var))
     data  = varmap.src.data_by_date(datetime)
     if varmap.cressman:

@@ -63,6 +63,21 @@ class Preprocessor():
         logger.info('running input operator')
         remopreproc.input(user_config)
 
+    @staticmethod
+    def process(user_config, date=None, parallel=False):
+        """start the preprocessing
+
+        Parameters
+        ----------
+        user_config: str
+            user_config file
+        date: (datetime)
+            date and time to preprocess
+        parallel: boolean
+            process in parallel
+        """
+        logger.info('running process operator')
+
 def main():
     # Workaroud to avoid using more for the output
     def display(lines, out):

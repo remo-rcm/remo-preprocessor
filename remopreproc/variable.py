@@ -1,11 +1,11 @@
 
 
-from . import interface as intf
+from pyintorg import interface as intf
 
 import numpy as np
 
 import logging
-import filemanager as fm
+from . import filemanager as fm
 
 #import ocean as sst
 

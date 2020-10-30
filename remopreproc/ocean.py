@@ -8,11 +8,11 @@ import tempfile
 import logging
 import numpy as np
 #from scipy.interpolate import interp1d
-import datastore as ds
-from static_data import static_data
-import filemanager as fm
-import cal
-from dataset import NC4Dataset
+from . import datastore as ds
+from . import static_data
+from . import filemanager as fm
+from .import cal
+from .dataset import NC4Dataset
 
 
 SST_VARNAME = 'tos'
