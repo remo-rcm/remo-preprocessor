@@ -1,6 +1,7 @@
 
 
 import os
+import socket
 import logging
 from configobj import ConfigObj
 import datetime as dt
@@ -41,6 +42,12 @@ class ExpClass:
         self.configfile = configfile 
         self.configdir  = os.path.dirname(self.configfile)
         self.config     = cm.get_yaml(self.configfile)
+
+        self.userid  = os.getenv('USER')
+        self.scratch = os.getenv('SCRATCH')
+        self.work    = os.getenv('WORK')
+        self.home    = os.getenv('HOME')
+        self.host    = socket.gethostname()
         # this should be obsolete soon.
         #self.config['namelist']['file'] = os.path.join(GVars.usrDir, self.config['namelist']['file'] )
         #self.config['mapping']['map'] = os.path.join(GVars.mapDir, self.config['mapping']['map'] )
@@ -87,6 +94,9 @@ class ExpClass:
         return {var : {**default, **attrs} for var, attrs in self.config_input_data['variables'].items()}
 
     def log(self):
+        logging.info("USERID  :   {}".format(self.userid))
+        logging.info("SCRATCH :   {}".format(self.scratch))
+        logging.info("WORK    :   {}".format(self.work))
         logging.info("---------- user's config -----------")
         cm.log_dict(dict(self.config))
         logging.info("---------- config of input data ----")

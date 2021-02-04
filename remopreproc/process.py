@@ -31,7 +31,7 @@ from . import physics
 from . import datastore as ds
 import os
 from . import input
-
+from . import tables as tbl
 from . import bodlib as bdl
 
 import pandas as pd
@@ -41,6 +41,7 @@ from .catalog import Intake
 from . import common as cm
 
 from .exp import ExpVars
+from . import exp
 #from .constants import GVars
 
 
@@ -149,7 +150,8 @@ def init_datastore():
     return datastore
 
 def init_output(startdate):
-    id = ExpVars.config['experiment']['id']
+    #id = ExpVars.config['experiment']['id']
+    id = ExpVars.config['expid']
     #startdate = cal.calendar.convert_to_cftime(startdate)
     out_path = get_output_path()
     if not os.path.exists(out_path):
@@ -174,7 +176,8 @@ def init_static_data(datastore):
     #sd.static_state['FIBGE'] = sd.static_data.fibge
     #sd.static_state['BLAGE'] = sd.static_data.blage
 
-    for field, attrs in GVars.stcvars.items():
+    #for field, attrs in GVars.stcvars.items():
+    for field, attrs in tbl.bodlib.items():
         print('adding: {}'.format(field))
         ncvar = sd.bodlib.field_by_code(attrs['attributes']['code'])
         if ncvar:
@@ -184,8 +187,9 @@ def init_static_data(datastore):
 
 
 def create_mapping(datastore):
-    mapping_file  = ExpVars.config['mapping']['map']
-    table = ConfigObj(mapping_file)
+    #mapping_file  = ExpVars.config['mapping']['map']
+    #table = ConfigObj(mapping_file)
+    table = tbl.mapping #ConfigObj(mapping_file)
     dataset_dict = datastore
     domain = ExpVars.domain
     mapping_table = mapping.mapping_table_dynamic(dataset_dict, table, domain)
@@ -194,8 +198,9 @@ def create_mapping(datastore):
 
 
 def create_aux_mapping(datastore):
-    mapping_file  = ExpVars.config['mapping']['map']
-    table = ConfigObj(mapping_file)
+    #mapping_file  = tables.mapping #ExpVars.config['mapping']['map']
+    #print(mapping_file)
+    table = tbl.mapping #ConfigObj(mapping_file)
     print(table)
     domain = ExpVars.domain
     if ExpVars.aux_vars:
@@ -220,13 +225,14 @@ def remap_aux(mapping_table, timestep):
 def remap_ocean(date, domain, to_atmo=True):
     return mapping.remap_ocean(date, domain, to_atmo)
 
-def process(args):
-    ExpVars.init(args.user_config)
-    ExpVars.log()
-    run(0)
+#def process(args):
+#    ExpVars.init(args.user_config)
+#    ExpVars.log()
+#    run(0)
 
-def process(user_config):
+def process(user_config, date, parallel):
     exp.load_config(user_config)
+    run_dynamic(ExpVars.timerange)
 
 
 def process_parser(subparsers):

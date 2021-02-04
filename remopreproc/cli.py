@@ -77,6 +77,7 @@ class Preprocessor():
             process in parallel
         """
         logger.info('running process operator')
+        remopreproc.process(user_config, date=date, parallel=parallel)
 
 def main():
     # Workaroud to avoid using more for the output

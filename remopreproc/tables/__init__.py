@@ -37,6 +37,8 @@ bodlib = get_yaml(pkg_resources.resource_filename(__name__, os.path.join("input"
 
 mapping = get_yaml(pkg_resources.resource_filename(__name__, os.path.join("mapping", "mapping.yaml")))
 
+variables = get_yaml(pkg_resources.resource_filename(__name__, os.path.join("output", "forcing", "variables.yaml")))
+
 gcm_input = browse(input_gcm_path) 
 
 

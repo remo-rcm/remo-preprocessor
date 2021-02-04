@@ -1,4 +1,6 @@
 
+import os
+
 import datetime as dt
 from cdo import Cdo
 import logging
@@ -8,7 +10,7 @@ import pandas as pd
 from .cache_deco import cached, key_memoized
 import numpy as np
 
-from .constants import GVars
+from .exp import ExpVars
 
 from . import filemanager as fm
 
@@ -224,7 +226,7 @@ class ECMWF(NC4Dataset):
 
 
     def __init__(self,df=None, time_axis='time'):
-        self.cdo = Cdo(logging=True, tempdir=GVars.scratch)
+        self.cdo = Cdo(logging=True, tempdir=os.path.join(ExpVars.scratch,'python-cdo'))
         self.time_axis = time_axis
         self.df = df
         self.df['startdate'] = pd.to_datetime(self.df['startdate'])

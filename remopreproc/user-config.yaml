@@ -1,12 +1,44 @@
 ---
 expid: "000000"
 processing:
-    timerange: "1979-01-01T00:00:00/to/1979-12-31T18:00:00"
+  timerange: "1979-01-01T00:00:00/to/1979-12-31T18:00:00"
 input:
-    dataset: ECMWF/era-interim.yaml
-    bodlib: /work/ch0636/surflibs/cordex/lib_EUR-11_frac
+  dataset: ECMWF/era-interim.yaml
+  bodlib: /work/ch0636/surflibs/cordex/lib_EUR-11_frac
 output:
-    path: /work/ch0636/g300046/ERA5/EUR-11/xa
+  path: /work/ch0636/g300046/ERA5/EUR-11/xa
+  variables:
+      - T
+      - PS
+      - U
+      - V
+      - QD
+      - QW
+      - TSW
+      - TSI
+      - SEAICE
+      - QDBL
+  static:
+      - BLA
+      - FIB
+      - AZ0
+      - ALB
+      - VGRAT
+      - VAROR
+      - VLT
+      - FOREST
+      - FAO
+      - WSMX
+      - BETA
+      - WMINLOK
+      - WMAXLOK
+  initial:
+      - TSL
+      - TD3
+      - TD4
+      - TD5
+      - TD
+      - TDCL
 grid:
-    domain: EUR-11
-    vc_table: 27_standard
+  domain: EUR-11
+  vc_table: 27_standard

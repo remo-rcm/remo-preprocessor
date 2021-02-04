@@ -3,6 +3,8 @@
 from . import workspace
 from . import input as inp
 from . import process as prc
+from . import constants as const
+
 
 def init(expid=None, domain=None, root='.'):
     """initialize user workspace.
@@ -16,7 +18,8 @@ def input(user_config):
     inp.get_input(user_config)
 
 
-def process(user_config):
+def process(user_config, date, parallel):
     """process input files
     """
-    prc.process(user_config)
+    #const.GVars.init('')
+    prc.process(user_config, date, parallel)

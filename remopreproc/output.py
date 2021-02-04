@@ -16,6 +16,8 @@ import tarfile
 
 from . import common as cm
 
+from . import tables as tbl
+
 current_file = None
 output = None
 
@@ -84,7 +86,7 @@ class Output():
         """define variables in the forcing file
         """
         for var in ExpVars.config['output']['variables']:
-            items = GVars.var_attrs[var]
+            items = tbl.variables[var]
             fill_value = items.get('fill_value', False)
             attrs = items.get('attributes', None)
             self.fw.def_ncvar(var, dims=items['dims'], attrs=attrs, fill_value=fill_value)

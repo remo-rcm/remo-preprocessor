@@ -1,10 +1,10 @@
-
+import os
 
 from . import filemanager as fm
 from . import dataset as ds
 import logging
 
-from .constants import GVars
+from .exp import ExpVars
 
 from .cache_deco import cached
 from cdo import Cdo
@@ -113,7 +113,7 @@ class ECMWF(DataStore):
                  238: 'tsn', 236: 'tsl4', 246: 'clw', 141: 'snw', 198: 'src' }
 
     def __init__(self, tables):
-        self.cdo = Cdo(logging=True, tempdir=GVars.scratch)
+        self.cdo = Cdo(logging=True, tempdir=os.path.join(ExpVars.scratch,'python-cdo'))
         self.FM = era.FileManager
         DataStore.__init__(self, tables, 'ECMWF')
 
