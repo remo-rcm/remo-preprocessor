@@ -26,7 +26,7 @@ bk_valid = ['b_bnds', 'hybi']
 lon_valid = ['lon', 'longitude', 'nav_lat']
 lat_valid = ['lat', 'latitude', 'nav_lon']
 
-data_prec = 'f8'
+data_prec = 'f4'
 dim_prec  = 'f8'
 
 
