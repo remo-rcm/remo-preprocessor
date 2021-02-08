@@ -73,7 +73,8 @@ def prepare_sst(datetime):
 #    tos_ds  = DataStore.dataset['tos']
     tos_ds  = ds.datastore['tos']
     # use orog dataset as grid reference
-    grid_ds = static_data['orog']
+    #grid_ds = static_data['orog']
+    grid_ds = ds.datastore['orog']
     logging.info('ocean sst will be interpolated in time to the atmosphere frequency.')
     sst_at_date    = interpolate_to_datetime(tos_ds, datetime)
     ds_timestep    = get_ds_timestep(tos_ds, 0)

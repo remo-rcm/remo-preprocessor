@@ -232,7 +232,11 @@ def remap_ocean(date, domain, to_atmo=True):
 
 def process(user_config, date, parallel):
     exp.load_config(user_config)
-    run_dynamic(ExpVars.timerange)
+    if date:
+        date = cm.parse_date(date)
+        run_dynamic((date, date))
+    else:
+        run_dynamic(ExpVars.timerange)
 
 
 def process_parser(subparsers):

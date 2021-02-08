@@ -122,6 +122,7 @@ class NC4Dataset():
                     for attr in self.ds.ncattrs()}
 
     def get_index_by_date(self, dates):
+        logging.debug('dates: {}'.format(dates))
         return date2index(dates,
                 self.ds.variables[self.time_axis], select='exact')
 

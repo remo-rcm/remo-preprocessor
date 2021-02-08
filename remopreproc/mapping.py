@@ -116,10 +116,10 @@ def mapping_table_dynamic(datasets, table, domain):
     src_qd = var.create_variable(source, datasets )
     mapping_table[varname] = src_qd
 
-    varname = 'QW'
-    source = table[varname]['src']
-    src_qw = var.create_variable(source, datasets )
-    mapping_table[varname] = src_qw
+    #varname = 'QW'
+    #source = table[varname]['src']
+    #src_qw = var.create_variable(source, datasets )
+    #mapping_table[varname] = src_qw
 
     varname = 'SEAICE'
     source = table[varname]['src']
@@ -265,7 +265,7 @@ def remap_dynamic(mapping_table, datetime):
     fibgm = bodlib.fibgm
     print_datinfo('fibgm', fibgm)
     qdgm  = mapping_table['QD'].data_by_date(datetime).clip(min=0.0)
-    qwgm  = mapping_table['QW'].data_by_date(datetime).clip(min=0.0)
+    qwgm  = 0.0 #mapping_table['QW'].data_by_date(datetime).clip(min=0.0)
 
     qdgm_le_zero = np.where( qdgm <= 0.0, True, False)
     qdgm = np.where( qdgm_le_zero, 0.0, qdgm)
