@@ -177,6 +177,7 @@ def init_static_data(datastore):
     #sd.static_state['BLAGE'] = sd.static_data.blage
 
     #for field, attrs in GVars.stcvars.items():
+    # add all other fields from the bodlib
     for field, attrs in tbl.bodlib.items():
         print('adding: {}'.format(field))
         ncvar = sd.bodlib.field_by_code(attrs['attributes']['code'])

@@ -5,6 +5,7 @@ import pytest
 
 from remopreproc import dataset as rds
 
+import datetime as dt
 
 filenames = [
 "output1/IPSL/IPSL-CM5A-MR/historical/6hr/atmos/6hrLev/r1i1p1/v20120114/ta/ta_6hrLev_IPSL-CM5A-MR_historical_r1i1p1_1850010103-1859123121.nc",
@@ -34,3 +35,10 @@ filenames = [ os.path.join(root, f) for f in filenames ]
 
 def test_dataset():
     ds = rds.NC4Dataset(filenames)
+    date = dt.datetime(1850,1,1,3,0,0)
+    assert ds.get_index_by_date(date) == 0
+    assert ds.dynamic('ta')
+
+
+if __name__ == "__main__":
+    test_dataset() 

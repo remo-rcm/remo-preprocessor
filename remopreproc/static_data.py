@@ -26,11 +26,11 @@ class StaticData():
     # scaling factor for orography
     # scaling factor for land sea mask
     # fak_bal = 1.0 # if unit is 'm**2 s**-2'
-    fak_fib = 1.0 # era5
-    fak_bla = 1.0 # era5
+    #fak_fib = 1.0 # era5
+    #fak_bla = 1.0 # era5
 
-#    fak_fib = 1.0/0.10197 # = gravitational constant if unit is 'm'
-#    fak_bla = 0.01 # if unit is '%'
+    fak_fib = 1.0/0.10197 # = gravitational constant if unit is 'm'
+    fak_bla = 0.01 # if unit is '%'
 
     def __init__(self):
         pass
@@ -74,6 +74,7 @@ class StaticData():
                 return ncvar
             elif str(code).zfill(3) in varname:
                 return ncvar
+
 
 
 

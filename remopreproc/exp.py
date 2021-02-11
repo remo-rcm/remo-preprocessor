@@ -17,7 +17,7 @@ from .constants import GVars
 from . import common as cm
 from .constants import DATE_FMT as date_fmt
 
-from pyremo2 import vc
+from pyremo import vc
 
 def parse_timerange(range):
     split = range.split('/to/')
