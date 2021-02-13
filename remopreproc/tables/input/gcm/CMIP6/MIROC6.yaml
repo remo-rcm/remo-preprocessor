@@ -4,26 +4,23 @@
 processing:
   variables: [ta, ps, ua, va, hus, tos]
   static: [orog, sftlf, sftof]
-# default global attributes
 attributes:
     activity_id: CMIP
-    institution_id: MPI-M
-    source_id: MPI-ESM1-2-LR
+    institution_id: MIROC
+    source_id: MIROC6
     experiment_id: historical
-    member_id: r1i1p1f1 #r10i1p1f1
+    member_id: r1i1p1f1
     grid_label: gn
     table_id: 6hrLev
-    version: v20190710
+    #version: v20190710
 variables:
 # overwrite default attributes
     ta:
         variable_id: ta
     ua:
         variable_id: ua
-        version: v20190815
     va:
         variable_id: va
-        version: v20190815
     hus:
         variable_id: hus
     ps:
