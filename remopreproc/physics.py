@@ -7,6 +7,7 @@ from .exp import ExpVars
 from . import common as cm
 import logging
 from . import static_data as sd
+from pyremo.physics import specific_humidity, liquid_water_content
 
 
 def soil_layers(state):
@@ -59,6 +60,10 @@ def water_content(state):
     ak = ExpVars.vc_table['ak'].values
     bk = ExpVars.vc_table['bk'].values
     qdem, qwem = physics.water_content(arfem, tem, psem, ak, bk)
+    ak = 0.5 * (ak[:-1]+ak[1:])
+    bk = 0.5 * (bk[:-1]+bk[1:])
+    qwem = liquid_water_content(tem, arfem, psem, ak, bk)
+    qdem = specific_humidity(tem, arfem, psem, ak, bk)
     state['QD'] = qdem
     state['QW'] = qwem
     state['QDBL'] = qdem[:,:,-1] # last layer will be used for QDBL

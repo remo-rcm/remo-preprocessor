@@ -3,6 +3,7 @@ processing:
     #variables: [ta, ps, ua, va, hus, tos, clw, sd, svo]
   variables: [ta, ps, hus, tos, clw, sd, svo, sic]
   #aux: [tsl1, tsl2, tsl3, tsl4, tsn, snw, src, skt]
+  aux: [tsl1, tsl2, tsl3, tsl4, tsn, snw, src, skt, sic]
   static: [orog, sftlf, sftof]
 catalog:
   url: "/work/ch0636/intake-esm/intake-esm-datastore/catalogs/mistral-era-interim.json"

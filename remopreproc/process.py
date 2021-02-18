@@ -72,8 +72,8 @@ def do_timestep(map_dynamic, date, ocean_to_atmo, map_aux=None):
     logging.info('timestep: {}'.format(date))
     # remape primary dynamic variables
     aux = {}
-    #if map_aux:
-    #    aux    = remap_aux(map_aux, timestep=date)
+    if map_aux:
+        aux    = remap_aux(map_aux, timestep=date)
     atmos  = remap_atmos(map_dynamic, timestep=date)
     ocean  = remap_ocean(date, ExpVars.domain, ocean_to_atmo)
 
