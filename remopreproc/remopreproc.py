@@ -22,4 +22,5 @@ def process(user_config, date, parallel):
     """process input files
     """
     #const.GVars.init('')
+    workspace.Workspace.init(user_config)
     prc.process(user_config, date, parallel)
