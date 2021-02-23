@@ -10,7 +10,7 @@ attributes:
     institution_id: MPI-M
     source_id: MPI-ESM1-2-LR
     experiment_id: historical
-    member_id: r1i1p1f1 #r10i1p1f1
+    member_id: r1i1p1f1
     grid_label: gn
     table_id: 6hrLev
     version: v20190710

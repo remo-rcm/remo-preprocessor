@@ -33,6 +33,7 @@ import os
 from . import input
 from . import tables as tbl
 from . import bodlib as bdl
+from . import parallel as prl
 
 import pandas as pd
 
@@ -58,6 +59,14 @@ DOCU = 'process the global data\n'\
 #def interpolate_ocean(ds):
 #    interpolating_function = RegularGridInterpolator((x, y, z), data)
 
+def check_cdo_version():
+    cdo = Cdo(logging=True)
+    cdo_version = cdo.version()
+    logging.info("CDO Version: "+cdo_version)
+    if cdo_version == "1.9.8":
+        logging.critical("wrong cdo version, see https://code.mpimet.mpg.de/issues/9441")
+        logging.critical("your cdo version has a bug concerning the dv2uv operator.")
+        raise Exception("wrong cdo version")
 
 def get_output_path():
     if 'path' in ExpVars.config['output']:
@@ -72,8 +81,8 @@ def do_timestep(map_dynamic, date, ocean_to_atmo, map_aux=None):
     logging.info('timestep: {}'.format(date))
     # remape primary dynamic variables
     aux = {}
-    #if map_aux:
-    #    aux    = remap_aux(map_aux, timestep=date)
+    if map_aux:
+        aux    = remap_aux(map_aux, timestep=date)
     atmos  = remap_atmos(map_dynamic, timestep=date)
     ocean  = remap_ocean(date, ExpVars.domain, ocean_to_atmo)
 
@@ -118,6 +127,7 @@ def run_initial(datetime):
 
 
 def run_dynamic(timerange):
+    check_cdo_version()
     ds.datastore = init_datastore()
     datastore = ds.datastore
     map_aux = create_aux_mapping(datastore)
@@ -231,13 +241,23 @@ def remap_ocean(date, domain, to_atmo=True):
 #    ExpVars.log()
 #    run(0)
 
-def process(user_config, date, parallel):
+def process(user_config, date=None, parallel=False):
     exp.load_config(user_config)
     if date:
         date = cm.parse_date(date)
-        run_dynamic((date, date))
+        timerange = (date, date)
     else:
-        run_dynamic(ExpVars.timerange)
+        timerange = ExpVars.timerange
+    if parallel:
+        run_parallel(timerange)
+    else:
+        run_dynamic(timerange)
+
+
+def run_parallel(timerange, chunks='MS'):
+    logging.info('preparing parallel mode')
+    sub_ranges = prl.chunk_ranges(timerange, chunks)
+    prl.create_jobscripts(sub_ranges)
 
 
 def process_parser(subparsers):
