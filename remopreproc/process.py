@@ -45,6 +45,7 @@ from .exp import ExpVars
 from . import exp
 #from .constants import GVars
 
+from cdo import Cdo
 
 from netCDF4 import Dataset
 

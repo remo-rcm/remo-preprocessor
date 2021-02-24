@@ -11,7 +11,7 @@ from . import grid as gd
 from pyintorg import interface as intf
 
 from .state import State
-from cordex.dataset import NC4Dataset
+from .dataset import NC4Dataset
 
 from . import common as cm
 

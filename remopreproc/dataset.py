@@ -268,7 +268,8 @@ class ECMWF(NC4Dataset):
         """
         return self.variables['hyai'], self.variables['hybi']
 
-    def _tmp_file_by_date(self, datetime, nc=True):
+    @cached
+    def _tmp_file_by_date(self, datetime, nc):
         filename = self.get_file_by_date(datetime)
         date_str = datetime.strftime(self.date_fmt)
         logging.debug('selecting {} from {}'.format(date_str, filename))
@@ -349,7 +350,6 @@ class ECMWF(NC4Dataset):
         else:
             return df['path'].values[0]
 
-    @cached
     def data_by_date(self, variable, datetime, nc=True):
         return Dataset(self._tmp_file_by_date(datetime, nc)).variables[variable][0]
 

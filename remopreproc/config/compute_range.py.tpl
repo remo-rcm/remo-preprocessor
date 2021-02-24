@@ -13,13 +13,16 @@
 # own template
 
 import sys
+import logging
 
-sys.path.append("@path")
+from remopreproc.exp import ExpVars
+from remopreproc.process import run_dynamic
+from remopreproc.common import parse_date
 
-from driver import init_constants
-from exp import ExpVars
-from process import run_dynamic
-from common import parse_date
+
+# logger configuration
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s | %(levelname)8s | %(module)10s | %(funcName)20s | %(message)s')
+
 
 configfile = "@configfile"
 startdate = parse_date("@startdate")
@@ -27,7 +30,6 @@ enddate = parse_date("@enddate")
 
 timerange = (startdate, enddate)
 
-init_constants("@runHomeDir")
 ExpVars.init(configfile)
 
 run_dynamic(timerange)

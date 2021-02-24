@@ -34,6 +34,7 @@ def cached(func):
     cache = dict()
 
     def memoized_func(*args):
+        print(args)
         if args in cache:
             return cache[args]
         result = func(*args)

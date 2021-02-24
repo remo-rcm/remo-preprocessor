@@ -137,8 +137,8 @@ class ECMWF(DataStore):
             vorticity_tmp = self.storage['svo']._ref_file(nc=False)
             divergence_tmp = self.storage['sd']._ref_file(nc=False)
         else:
-            vorticity_tmp = self.storage['svo']._tmp_file_by_date(datetime, nc=False)
-            divergence_tmp = self.storage['sd']._tmp_file_by_date(datetime, nc=False)
+            vorticity_tmp = self.storage['svo']._tmp_file_by_date(datetime, False)
+            divergence_tmp = self.storage['sd']._tmp_file_by_date(datetime, False)
         merge = self.cdo.merge(input=[vorticity_tmp, divergence_tmp])
         uv = self.cdo.dv2uvl(options='-f nc', input = merge)
         uv = self.cdo.invertlat(input=uv)
