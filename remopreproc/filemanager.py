@@ -2,7 +2,7 @@
 
 import logging
 
-from cordex import ESGF
+#from cordex import ESGF
 #from cordex.dataset import NC4Dataset, NC4MFDataset, XRDataset
 from .exp import ExpVars
 from netCDF4 import Dataset, MFDataset, date2index, num2date, date2num
@@ -110,24 +110,24 @@ def get_dataset_dict(config, **kwargs):
     return dataset_dict
 
 
-def get_files_by_variable(config, varname, dynamic=True):
-    project_id = config['convention']['project_id']
-    root       = config['convention']['root']
-    attributes = config['attributes']
-    logging.debug('project_id: {}'.format(project_id))
-    logging.debug('root      : {}'.format(root))
-    var_selections = {}
-    filter = attributes.copy()
-    filter.update({'variable':varname})
-    fsel = ESGF.get_selection(project_id, root=root, filter=filter)
-    if not fsel.unique:
-        print(fsel)
-        raise Exception('file selection of {} is ambiguous'.format(varname))
-    if dynamic:
-        fsel = fsel.to_datetime()
-        fsel = fsel.select_timerange(ExpVars.timerange)
-    print(fsel.df)
-    return fsel.file_list
+#def get_files_by_variable(config, varname, dynamic=True):
+#    project_id = config['convention']['project_id']
+#    root       = config['convention']['root']
+#    attributes = config['attributes']
+#    logging.debug('project_id: {}'.format(project_id))
+#    logging.debug('root      : {}'.format(root))
+#    var_selections = {}
+#    filter = attributes.copy()
+#    filter.update({'variable':varname})
+#    fsel = ESGF.get_selection(project_id, root=root, filter=filter)
+#    if not fsel.unique:
+#        print(fsel)
+#        raise Exception('file selection of {} is ambiguous'.format(varname))
+#    if dynamic:
+#        fsel = fsel.to_datetime()
+#        fsel = fsel.select_timerange(ExpVars.timerange)
+#    print(fsel.df)
+#    return fsel.file_list
 
 
 def get_index_by_date(dataset, dates):

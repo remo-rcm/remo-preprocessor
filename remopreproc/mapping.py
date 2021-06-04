@@ -39,7 +39,7 @@ class Mapping():
         self.mask = mask
 
     def _create_grid_mapping(self):
-        logging.info('grid info: {}'.format(gd.get_info(self.domain)))
+        logging.info('grid info: {}'.format(self.domain))
         lamem, phiem = intf.geo_coords(*gd.get_info(self.domain))
         indii, indjj = intf.intersection_points(self.src.lam, self.src.phi, lamem, phiem)
         self.lamem = lamem[:,:,self.igr-1]
@@ -292,7 +292,7 @@ def remap_dynamic(mapping_table, datetime):
     # rotation
     logging.info('rotation of wind vector')
     uge_rot, vge_rot = intf.rotate_uv(uge, vge, uvge, vuge, u_varmap.lamem, u_varmap.phiem,
-            v_varmap.lamem, v_varmap.phiem, u_varmap.domain.pollon, u_varmap.domain.pollat)
+            v_varmap.lamem, v_varmap.phiem, u_varmap.domain['pollon'], u_varmap.domain['pollat'])
     print_datinfo('uge_rot', uge_rot)
     print_datinfo('vge_rot', vge_rot)
 

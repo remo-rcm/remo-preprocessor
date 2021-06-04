@@ -59,7 +59,8 @@ class ExpClass:
         #self.vc_table  = pd.read_csv(os.path.join(GVars.vctDir, self.config['grid']['vc_table']))
         self.vc_table  = vc.table(self.config['grid']['vc_table']) 
         # load remo domain from pyremo
-        self.domain     = gd.load_domain(self.config['grid']['domain'])
+        #self.domain     = gd.load_domain(self.config['grid']['domain'])
+        self.domain     = gd.domain_info(self.config['grid']['domain'])
         # create a dictionary from the input dynamic variables chosen by the user
         self.gcm_var_attrs = self.init_var_attrs(self.config_input_data['processing']['variables'])
         # create a dictionary from the input static variables chosen by the user

@@ -7,6 +7,6 @@ scheduler:
   mem_per_cpu: "7680"
   ntasks: "6"
   account: "ch0636"
-  time: "2-00:00:00"
+  time: "14:00:00"
   job_shell: "#!/bin/sh"
   job_suffix: ".sh"

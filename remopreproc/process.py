@@ -258,7 +258,9 @@ def process(user_config, date=None, parallel=False):
 def run_parallel(timerange, chunks='MS'):
     logging.info('preparing parallel mode')
     sub_ranges = prl.chunk_ranges(timerange, chunks)
-    prl.create_jobscripts(sub_ranges)
+    scheduler = prl.create_jobscripts(sub_ranges)
+    scheduler.submit()
+
 
 
 def process_parser(subparsers):

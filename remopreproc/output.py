@@ -21,6 +21,7 @@ from . import tables as tbl
 current_file = None
 output = None
 
+from . import grid as gd
 
 
 def create_archive(archive, filelist):
@@ -172,6 +173,9 @@ def init_output(id, path, startdate, domain):
 
 def create_dataset(filename):
     logging.info('creating file: {}'.format(filename))
-    return ExpVars.domain.get_dataset(filename, mode='w')
+    #return ExpVars.domain.get_dataset(filename, mode='w')
+    ds = gd.load_domain(ExpVars.domain['short_name'])
+    ds.to_netcdf(filename)
+    return Dataset(filename, mode='a')
 
 

@@ -27,7 +27,7 @@ date_fmt = '%Y-%m-%dT%H:%M:%S'
 def create_scheduler(name):
     btc_cfg = cfg.scheduler #get_config(GVars.btc_cfg, silent=True)
     run_tpl = cfg.job_tpl #os.path.join(GVars.tplDir,btc_cfg['scheduler']['serial_template'])
-    logfile = None #os.path.join(GVars.logDir,name+'.jobids.ini')
+    logfile = 'scheduler_'+name+'.log' #os.path.join(GVars.logDir,name+'.jobids.ini')
     scheduler = Scheduler(SYS,name=name,tpl=run_tpl,logfile=logfile)
     return scheduler
 
@@ -59,19 +59,20 @@ def chunk_ranges(timerange, chunks, freq='6h'):
     return ranges
 
 
-def create_jobscript(scheduler, timerange):
+def create_jobscript(scheduler, timerange, parallel=False):
     configfile = exp.ExpVars.user_config
     config = {'configfile': configfile,
               'startdate' : str(timerange[0].strftime(date_fmt)),
               'enddate'   : str(timerange[1].strftime(date_fmt)),
               'path'      : 'path'}
     jobname = 'preprocess_{}-{}'.format(timerange[0].strftime(date_fmt), timerange[1].strftime(date_fmt))
-    add_job(scheduler, jobname, config)
+    add_job(scheduler, jobname, config, parallel)
 
 def create_jobscripts(sub_ranges):
     scheduler = create_scheduler('preprocess')
     for sub_range in sub_ranges:
         create_jobscript(scheduler, (sub_range.min(),sub_range.max()))
+    return scheduler
 
 #def get_job(varname,commands,jobname,submit=False):
 #    btc_cfg = get_config(GVars.btc_cfg, silent=True)

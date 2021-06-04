@@ -11,7 +11,7 @@ from . import remopreproc
 
 
 # logger configuration
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s | %(levelname)8s | %(module)10s | %(funcName)20s | %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s | %(levelname)8s | %(module)10s | %(funcName)20s | %(message)s')
 
 
 logger = logging.getLogger(__name__)

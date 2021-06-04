@@ -2,7 +2,7 @@
 #SBATCH --job-name=@job_name                 # Specify job name
 #SBATCH --partition=@partition               # Specify partition name
 #SBATCH --ntasks=1                           # Specify max. number of tasks to be invoked
-#SBATCH --cpus-per-task=1  
+#SBATCH --cpus-per-task=4
 #SBATCH --mem-per-cpu=@mem_per_cpu           # Specify real memory required per CPU in MegaBytes
 #SBATCH --time=@time                         # Set a limit on the total run time
 #SBATCH --mail-type=FAIL                     # Notify user by email in case of job failure
